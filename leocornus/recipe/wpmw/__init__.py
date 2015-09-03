@@ -66,8 +66,16 @@ class Base:
         # process the sources one by one.
         for srcId, srcVersion in srcList:
             # the download url.
-            url = srcRepo + '/' + srcId + '.' + srcVersion + '.zip'
+	    # Only append version if it exists
+
+            url = srcRepo + '/' + srcId
+            if srcVersion != '':
+                url += '.' + srcVersion
+            url += '.zip'
             path, is_temp = download(url)
+
+            ## url = srcRepo + '/' + srcId + '.' + srcVersion + '.zip'
+            ## path, is_temp = download(url)
 
             # destination is parts/PART-NAME/PLUGIN_ID-PLUGIN_VERSION
             dest = os.path.join(self.buildout['buildout']['parts-directory'], 
