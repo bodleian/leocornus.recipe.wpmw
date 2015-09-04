@@ -77,9 +77,14 @@ class Base:
             ## url = srcRepo + '/' + srcId + '.' + srcVersion + '.zip'
             ## path, is_temp = download(url)
 
-            # destination is parts/PART-NAME/PLUGIN_ID-PLUGIN_VERSION
+            # destination is parts/PART-NAME/PLUGIN_ID[-PLUGIN_VERSION]
+            if srcVersion == '':
+                dirPath = srcId
+            else: 
+                dirPath = srcId + '-' + srcVersion
+
             dest = os.path.join(self.buildout['buildout']['parts-directory'], 
-                                self.name, srcId + '-' + srcVersion)
+                                self.name, dirPath)
             if not os.path.isdir(dest):
                 os.makedirs(dest)
                 parts.append(dest)
