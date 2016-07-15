@@ -63,6 +63,10 @@ class Base:
                                self.name)
         parts.append(partdir)
 
+        # ------------------------------
+        # Changed tsl Sept 2015. Caters for both cases: version suffix or none
+        # If buildout has '' in version #, do not add version suffix 
+
         # process the sources one by one.
         for srcId, srcVersion in srcList:
             # the download url.
@@ -80,6 +84,8 @@ class Base:
             else: 
                 dirPath = srcId + '-' + srcVersion
 
+          # Changed tsl
+          # -------------------------------
             dest = os.path.join(self.buildout['buildout']['parts-directory'], 
                                 self.name, dirPath)
             if not os.path.isdir(dest):
