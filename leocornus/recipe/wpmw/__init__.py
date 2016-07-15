@@ -74,9 +74,6 @@ class Base:
             url += '.zip'
             path, is_temp = download(url)
 
-            ## url = srcRepo + '/' + srcId + '.' + srcVersion + '.zip'
-            ## path, is_temp = download(url)
-
             # destination is parts/PART-NAME/PLUGIN_ID[-PLUGIN_VERSION]
             if srcVersion == '':
                 dirPath = srcId
